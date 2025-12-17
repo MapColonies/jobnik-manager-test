@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.1.1-rc.0](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.0...0.1.1-rc.0) (2025-12-17)
+
+
+### Bug Fixes
+
+* disable 'include-v-in-tag' in release-please configuration ([47b176a](https://github.com/MapColonies/jobnik-manager-test/commit/47b176a3b0fbe4a6a3730d80d2d168cd1945a6a8))
+* switch to release candidate track ([3d919e2](https://github.com/MapColonies/jobnik-manager-test/commit/3d919e23195b7a9e30d08ad7de558cb5c972566e))
+* switch to release candidate track ([3be94c2](https://github.com/MapColonies/jobnik-manager-test/commit/3be94c21614f7879832a7da1f6feb59b2f36c555))
+* test rc patch bump ([ff1ee83](https://github.com/MapColonies/jobnik-manager-test/commit/ff1ee83ba2ff0dad698d4d5797fe99fa8e0c5505))
+* test rc patch bump ([d43731a](https://github.com/MapColonies/jobnik-manager-test/commit/d43731a5950ffbf5442df949afef9e9acea3816b))
+* test rc patch bump ([45a51c3](https://github.com/MapColonies/jobnik-manager-test/commit/45a51c3859f5223576394063ff2eb07c3b43e77d))
+* test rc patch bump ([e4d1bcc](https://github.com/MapColonies/jobnik-manager-test/commit/e4d1bcc6bcc8a76cd9961be96bf8495f4996148e))
+* test rc patch bump ([d39dccc](https://github.com/MapColonies/jobnik-manager-test/commit/d39dccc6a9f6d05057a0978b91e6ee92fdeb9af2))
+* test rc patch bump ([5bfaac4](https://github.com/MapColonies/jobnik-manager-test/commit/5bfaac42db6126554c422aaf5bf84740aa5b4c68))
+* test rc patch bump ([c7afd88](https://github.com/MapColonies/jobnik-manager-test/commit/c7afd88cd972e9a51c6c2a8c4b0a9295b83f8049))
+* test rc patch bump ([874c6d3](https://github.com/MapColonies/jobnik-manager-test/commit/874c6d3ca72fd64d9c028b0fd9f69f7b5c4178c1))
+
 ## 0.1.0 (2025-11-16)
 
 
