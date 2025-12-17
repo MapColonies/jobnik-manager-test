@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - master
+      - next
 
 permissions:
   contents: write
@@ -13,9 +14,9 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@v4
+      - name: Run release-please (master = final, next = rc)
+        uses: googleapis/release-please-action@v4
         with:
-          # this assumes that you have created a personal access token
-          # (PAT) and configured it as a GitHub action secret named
-          # `MY_RELEASE_PLEASE_TOKEN` (this secret name is not important).
           token: ${{ secrets.GH_PAT }}
+          target-branch: ${{ github.ref_name }}
+          config-file: release-please-config.${{ github.ref_name }}.json
