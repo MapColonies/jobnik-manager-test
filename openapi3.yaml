@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Job Manager Service
   description: Job Manager Service
-  version: 0.1.0
+  version: 0.1.1-rc.0
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
