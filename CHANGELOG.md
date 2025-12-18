@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.1-rc.0](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.0...0.1.1-rc.0) (2025-12-17)
+## [v0.1.1-rc.0](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.0...0.1.1-rc.0) (2025-12-17)
 
 
 ### Bug Fixes
