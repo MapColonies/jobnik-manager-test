@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.2-rc.0](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.0...v0.1.2-rc.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* enable include-v-in-tag configuration for release-please ([70d6644](https://github.com/MapColonies/jobnik-manager-test/commit/70d66442a2cbccf8efb21bac0ced0877109787ee))
+* remove 'v' prefix from version in release-please manifest ([15a6d72](https://github.com/MapColonies/jobnik-manager-test/commit/15a6d72476f84b8e6f5dee39f0c461c34bfc06ea))
+* standardize version format to include 'v' prefix in manifest, changelog, and configuration files ([e4398f1](https://github.com/MapColonies/jobnik-manager-test/commit/e4398f1b719cb61592dbd72031d602eddb2e98ca))
+* testing rc increment ([d459c31](https://github.com/MapColonies/jobnik-manager-test/commit/d459c319432010e9efa35b9c275856647244b595))
+* update include-v-in-tag configuration for release-please ([ab7837a](https://github.com/MapColonies/jobnik-manager-test/commit/ab7837a0bd802b58983fa5a1ade0f092356ec4e6))
+* update release-please configuration for consistency ([a09f7e8](https://github.com/MapColonies/jobnik-manager-test/commit/a09f7e8cd186cbd3a06ea43f2a412aebc75b8df6))
+
 ## [v0.1.1-rc.0](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.0...0.1.1-rc.0) (2025-12-17)
 
 
