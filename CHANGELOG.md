@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2-rc.0](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.0...v0.1.2-rc.0) (2025-12-22)
+
+
+### Bug Fixes
+
+* trigger secound rc ([7050031](https://github.com/MapColonies/jobnik-manager-test/commit/70500315e080e2870fee3bf70f1b0ca722c0c6c7))
+
 ## [0.1.1-rc.0](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.0...v0.1.1-rc.0) (2025-12-22)
 
 
