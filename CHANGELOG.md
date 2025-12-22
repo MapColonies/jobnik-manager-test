@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.0...v0.2.0) (2025-12-22)
+
+
+### Features
+
+* introduce v1 API structure with jobs, stages, and tasks endpoints MAPCO-8959 ([#205](https://github.com/MapColonies/jobnik-manager-test/issues/205)) ([dad0bd3](https://github.com/MapColonies/jobnik-manager-test/commit/dad0bd3b7844346dad9754ed77ec2af42728890a))
+
+
+### Bug Fixes
+
+* first test for rc loop ([35a0909](https://github.com/MapColonies/jobnik-manager-test/commit/35a0909c12bb5f23cbe3876c6e87c9866f5a10bc))
+
 ## 0.1.0 (2025-11-16)
 
 
