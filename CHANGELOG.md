@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.1-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.0...v0.1.1-rc.1) (2025-12-25)
+
+
+### Bug Fixes
+
+* trigger secound rc ([7050031](https://github.com/MapColonies/jobnik-manager-test/commit/70500315e080e2870fee3bf70f1b0ca722c0c6c7))
+
+
+### Miscellaneous Chores
+
+* force alignment to rc track ([2a31ad8](https://github.com/MapColonies/jobnik-manager-test/commit/2a31ad8035156648b2da64c4abcaeacef5afcb26))
+
 ## [0.1.1-rc.0](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.0...v0.1.1-rc.0) (2025-12-22)
 
 
