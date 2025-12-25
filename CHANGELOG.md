@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.1...v0.1.2-rc.1) (2025-12-25)
+
+
+### Bug Fixes
+
+* verify automatic rc increment ([3e2e51a](https://github.com/MapColonies/jobnik-manager-test/commit/3e2e51ad46e537a0de0ed63c423a936dd5999fbc))
+
 ## [0.1.1-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.0...v0.1.1-rc.1) (2025-12-25)
 
 
