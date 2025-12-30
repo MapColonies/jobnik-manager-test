@@ -29,9 +29,9 @@ runs:
       if: steps.calc.outputs.next_version != ''
       shell: bash
       run: |
-        # # Configure Git
-        # git config user.name "mapcolonies[bot]"
-        # git config user.email "devops[bot]@mapcolonies.com"
+        # Configure Git
+        git config user.name "mapcolonies[bot]"
+        git config user.email "devops[bot]@mapcolonies.com"
 
         # Check if footer exists to prevent loop
         TARGET_VER="${{ steps.calc.outputs.next_version }}"
