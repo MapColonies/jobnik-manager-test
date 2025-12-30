@@ -1,0 +1,93 @@
+name: Force RC alignment
+description: "Ensures RC patch increments when only fix commits are present, adding a Release-As footer to guide release-please."
+
+inputs:
+  target-ref:
+    description: "Full Git ref to run on (e.g., refs/heads/next). Steps are skipped if the current ref doesn't match."
+    required: false
+    default: refs/heads/next
+
+outputs:
+  next_version:
+    description: "Calculated RC version when only fixes exist."
+    value: ${{ steps.calc.outputs.next_version }}
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      if: ${{ github.ref == inputs.target-ref }}
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Calculate Correct RC Version
+      id: calc
+      if: ${{ github.ref == inputs.target-ref }}
+      shell: bash
+      run: |
+        # 1. Find the latest tag matching the pattern vX.Y.Z-rc.N
+        LATEST_TAG=$(git describe --tags --match "v*-rc*" --abbrev=0 2>/dev/null || echo "none")
+
+        if [ "$LATEST_TAG" = "none" ]; then
+          echo "No RC tag found. Letting Release Please handle initialization."
+          exit 0
+        fi
+
+        echo "Found latest tag: $LATEST_TAG"
+
+        # 2. Check for FEAT or BREAKING commits since the last tag
+        COMMITS=$(git log "$LATEST_TAG"..HEAD --pretty=format:"%s")
+        HAS_FEAT=$(echo "$COMMITS" | grep -E "^feat" || true)
+        HAS_BREAKING=$(echo "$COMMITS" | grep -E "BREAKING CHANGE" || true)
+
+        # 3. Breaking changes -> exit and let release-please handle Major bumps
+        if [ -n "$HAS_BREAKING" ]; then
+          echo "Detected BREAKING CHANGE. Exiting to allow standard Major bump."
+          exit 0
+        fi
+
+        # 4. Parse current RC tag
+        if [[ $LATEST_TAG =~ v([0-9]+)\.([0-9]+)\.([0-9]+)-rc\.([0-9]+) ]]; then
+          MAJOR=${BASH_REMATCH[1]}
+          MINOR=${BASH_REMATCH[2]}
+          PATCH=${BASH_REMATCH[3]}
+          CURRENT_RC=${BASH_REMATCH[4]}
+
+          if [ -n "$HAS_FEAT" ]; then
+            # Feature -> bump patch track and reset RC to 0 (e.g., 0.1.1-rc.1 -> 0.1.2-rc.0)
+            NEXT_PATCH=$((PATCH + 1))
+            BASE_VERSION="${MAJOR}.${MINOR}.${NEXT_PATCH}"
+            NEXT_RC=0
+            echo "Detected feature commits. Bumping to new base track ${BASE_VERSION} with rc.${NEXT_RC}"
+          else
+            # Fixes-only (or chores/docs) -> stay on track and increment RC
+            BASE_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+            NEXT_RC=$((CURRENT_RC + 1))
+            echo "Detected fixes-only. Incrementing RC on base ${BASE_VERSION} to rc.${NEXT_RC}"
+          fi
+
+          NEXT_VERSION="${BASE_VERSION}-rc.${NEXT_RC}"
+          echo "Calculated Target Version: $NEXT_VERSION"
+          echo "next_version=$NEXT_VERSION" >> "$GITHUB_OUTPUT"
+        else
+          echo "Could not parse tag $LATEST_TAG. Skipping."
+        fi
+
+    - name: Inject Release-As Footer
+      if: ${{ github.ref == inputs.target-ref && steps.calc.outputs.next_version != '' }}
+      shell: bash
+      run: |
+        TARGET_VER="${{ steps.calc.outputs.next_version }}"
+
+        # Prevent infinite loops by checking the last commit message
+        LAST_MSG=$(git log -1 --pretty=%B)
+        if [[ "$LAST_MSG" == *"Release-As: $TARGET_VER"* ]]; then
+          exit 0
+        fi
+
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git commit --allow-empty -m "chore: enforce correct rc version" -m "Release-As: $TARGET_VER"
+        # Push to the current branch
+        git push origin HEAD

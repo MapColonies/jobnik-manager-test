@@ -11,20 +11,20 @@ permissions:
   pull-requests: write
 
 jobs:
-  # JOB 1: The Workaround - Calculate and Force Version if needed
+  # JOB 1: The Guardrail - Only interfere if it's a simple FIX
   force-rc-alignment:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/next' # Only run this logic on the RC branch
+    if: github.ref == 'refs/heads/next'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Important: We need full history to see tags
+          fetch-depth: 0
 
       - name: Calculate Correct RC Version
         id: calc
         run: |
-          # 1. Find the latest tag matching the pattern v*.*.*-rc.*
+          # 1. Find the latest RC tag
           LATEST_TAG=$(git describe --tags --match "v*-rc*" --abbrev=0 2>/dev/null || echo "none")
           
           if [ "$LATEST_TAG" == "none" ]; then
@@ -34,30 +34,38 @@ jobs:
 
           echo "Found latest tag: $LATEST_TAG"
 
-          # 2. Check commits between LATEST_TAG and HEAD for 'feat' or 'BREAKING CHANGE'
-          #    We ignore 'Merge branch' commits to avoid the ghost history issue.
+          # 2. Check for FEATURE or BREAKING commits since that tag
           COMMITS=$(git log $LATEST_TAG..HEAD --pretty=format:"%s")
+          
+          # Grep returns exit code 0 if found, 1 if not. We use '|| true' to prevent script failure.
           HAS_FEAT=$(echo "$COMMITS" | grep -E "^feat" || true)
           HAS_BREAKING=$(echo "$COMMITS" | grep -E "BREAKING CHANGE" || true)
 
-          # 3. Logic: If NO features and NO breaking changes, we MUST enforce a Patch-level RC bump
-          if [ -z "$HAS_FEAT" ] && [ -z "$HAS_BREAKING" ]; then
-            echo "Detected only FIX/CHORE commits. Enforcing RC increment on existing base."
+          # 3. CRITICAL DECISION:
+          # If we find a Feature or Breaking Change, we EXIT.
+          # We let Release Please do its natural job (which is to bump 0.1.2 or 0.2.0)
+          if [ -n "$HAS_FEAT" ] || [ -n "$HAS_BREAKING" ]; then
+             echo "Feature or Breaking Change detected."
+             echo "Exiting script to let Release Please perform standard Minor/Major bump."
+             exit 0
+          fi
+
+          # 4. If we get here, it means we ONLY have fixes/chores.
+          # The native Release Please might be confused by ghost history, so we FORCE the patch RC.
+          echo "Detected only FIX commits. Enforcing RC increment."
+          
+          if [[ $LATEST_TAG =~ v([0-9]+\.[0-9]+\.[0-9]+)-rc\.([0-9]+) ]]; then
+            BASE_VERSION=${BASH_REMATCH[1]}
+            CURRENT_RC=${BASH_REMATCH[2]}
             
-            # Extract version parts using regex: v0.1.1-rc.1 -> Base: 0.1.1, RC: 1
-            if [[ $LATEST_TAG =~ v([0-9]+\.[0-9]+\.[0-9]+)-rc\.([0-9]+) ]]; then
-              BASE_VERSION=${BASH_REMATCH[1]}
-              CURRENT_RC=${BASH_REMATCH[2]}
-              NEXT_RC=$((CURRENT_RC + 1))
-              NEXT_VERSION="${BASE_VERSION}-rc.${NEXT_RC}"
-              
-              echo "Calculated Target Version: $NEXT_VERSION"
-              echo "next_version=$NEXT_VERSION" >> $GITHUB_OUTPUT
-            else
-              echo "Could not parse tag $LATEST_TAG. Skipping."
-            fi
+            # Increment the RC number (e.g. rc.1 -> rc.2)
+            NEXT_RC=$((CURRENT_RC + 1))
+            NEXT_VERSION="${BASE_VERSION}-rc.${NEXT_RC}"
+            
+            echo "Calculated Target Version: $NEXT_VERSION"
+            echo "next_version=$NEXT_VERSION" >> $GITHUB_OUTPUT
           else
-            echo "Detected Feature or Breaking Change. Allowing standard Minor bump behavior."
+            echo "Could not parse tag $LATEST_TAG. Skipping."
           fi
 
       - name: Inject Release-As Footer
@@ -65,28 +73,22 @@ jobs:
         run: |
           TARGET_VER="${{ steps.calc.outputs.next_version }}"
           
-          # Check if the last commit ALREADY has this footer (to prevent infinite loops)
           LAST_MSG=$(git log -1 --pretty=%B)
           if [[ "$LAST_MSG" == *"Release-As: $TARGET_VER"* ]]; then
-            echo "Commit already has the correct Release-As footer. Skipping."
+            echo "Footer already present. Skipping."
             exit 0
           fi
 
-          # Config Git
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Create Empty Commit with the Override
           git commit --allow-empty -m "chore: enforce correct rc version" -m "Release-As: $TARGET_VER"
-          
-          # Push (This will trigger the workflow again, but the 'if' check above prevents looping)
           git push origin next
 
-  # JOB 2: The Official Release Please Run
+  # JOB 2: Main Release Process
   release-please:
     needs: force-rc-alignment
-    # Run even if the previous job was skipped (e.g. on master branch)
-    if: always() 
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Run release-please
