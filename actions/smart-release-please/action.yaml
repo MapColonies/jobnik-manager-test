@@ -1,0 +1,53 @@
+name: "Smart Release Please"
+description: "Runs Release Please but forces correct RC patch increments for fix-only commits."
+
+inputs:
+  token:
+    description: "GitHub Token (PAT) for pushing commits and triggering releases."
+    required: false
+    default: ${{ github.token }}
+  target-branch:
+    description: "The branch to release from."
+    required: false
+    default: ${{ github.ref_name }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Calculate Correct RC Version
+      id: calc
+      if: inputs.target-branch == 'next'
+      shell: bash
+      run: python3 "${{ github.action_path }}/rc_align.py"
+
+    - name: Inject Release-As Footer
+      if: steps.calc.outputs.next_version != ''
+      shell: bash
+      run: |
+        # Check if footer exists to prevent loop
+        TARGET_VER="${{ steps.calc.outputs.next_version }}"
+        LAST_MSG=$(git log -1 --pretty=%B)
+        
+        if [[ "$LAST_MSG" == *"Release-As: $TARGET_VER"* ]]; then
+          echo "Footer already present. Skipping push."
+          exit 0
+        fi
+
+        # Commit & Push
+        git commit --allow-empty -m "chore: enforce correct rc version" -m "Release-As: $TARGET_VER"
+        git push origin ${{ inputs.target-branch }}
+        
+        echo "override_pushed=true" >> $GITHUB_ENV
+
+    - name: Run release-please
+      if: env.override_pushed != 'true'
+      uses: googleapis/release-please-action@v4
+      with:
+        token: ${{ inputs.token }}
+        target-branch: ${{ inputs.target-branch }}
+        config-file: release-please-config.${{ inputs.target-branch }}.json
