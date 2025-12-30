@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.2.0-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.1...v0.2.0-rc.1) (2025-12-30)
+
+
+### Features
+
+* replace RC alignment action with Smart Release Please and update workflows ([24fc6f7](https://github.com/MapColonies/jobnik-manager-test/commit/24fc6f7a2b98a7c6e48ce3dfb8f96b1adc97b08f))
+* trigger secound rc ([0841e7e](https://github.com/MapColonies/jobnik-manager-test/commit/0841e7ea293a6f3b13550ea5ce9c09cfd7b8354c))
+* trigger secound rc ([bea527e](https://github.com/MapColonies/jobnik-manager-test/commit/bea527ede95bc6aef988643d63c049b6db126f06))
+* update workflows for RC alignment and enhance versioning logic ([775d4ad](https://github.com/MapColonies/jobnik-manager-test/commit/775d4ade70072ce5900ca04cf09e26e93f002ca9))
+
+
+### Bug Fixes
+
+* implement force RC version alignment in release workflow ([083d449](https://github.com/MapColonies/jobnik-manager-test/commit/083d449dbb3c09299da6b3feda1d663aa92f38e5))
+* trigger secound rc ([04d784b](https://github.com/MapColonies/jobnik-manager-test/commit/04d784bceeb0b7b2797eb3dff99eca915e73717f))
+* verify automatic rc increment ([3e2e51a](https://github.com/MapColonies/jobnik-manager-test/commit/3e2e51ad46e537a0de0ed63c423a936dd5999fbc))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([ac1384a](https://github.com/MapColonies/jobnik-manager-test/commit/ac1384a876d9c32254f244428ea9b2f419add2e6))
+* enforce correct rc version ([7d84821](https://github.com/MapColonies/jobnik-manager-test/commit/7d8482119d554c48f44f808015c868894f25824d))
+* enforce correct rc version ([3a88a6e](https://github.com/MapColonies/jobnik-manager-test/commit/3a88a6ec0d5f037c5b43946c748071b969b2a5d1))
+* enforce correct rc version ([f7db367](https://github.com/MapColonies/jobnik-manager-test/commit/f7db367be5aeb70a9b0dac4ea1d2237886339df3))
+* enforce correct rc version ([105ba7e](https://github.com/MapColonies/jobnik-manager-test/commit/105ba7e6282627d7d2ee34ce1c486f86d6f5baf4))
+
 ## [0.1.1-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.0...v0.1.1-rc.1) (2025-12-25)
 
 
