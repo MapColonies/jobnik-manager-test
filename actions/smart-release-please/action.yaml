@@ -22,7 +22,7 @@ runs:
 
     - name: Calculate Correct RC Version
       id: calc
-      if: inputs.target-branch == 'next'
+      if: ${{ github.ref_name }} == 'next'
       shell: bash
       run: python3 "${{ github.action_path }}/rc_align.py"
 
@@ -44,7 +44,7 @@ runs:
         fi
 
         git commit --allow-empty -m "chore: enforce correct rc version" -m "Release-As: $TARGET_VER"
-        git push "https://x-access-token:${{ inputs.token }}@github.com/${{ github.repository }}.git" ${{ inputs.target-branch }}
+        git push "https://x-access-token:${{ inputs.token }}@github.com/${{ github.repository }}.git" ${{ github.ref_name }}
 
         echo "SKIP_RELEASE=true" >> $GITHUB_ENV
 
@@ -54,5 +54,5 @@ runs:
       uses: googleapis/release-please-action@v4
       with:
         token: ${{ inputs.token }}
-        target-branch: ${{ inputs.target-branch }}
-        config-file: release-please-config.${{ inputs.target-branch }}.json
+        target-branch: ${{ github.ref_name }}
+        config-file: release-please-config.${{ github.ref_name }}.json
