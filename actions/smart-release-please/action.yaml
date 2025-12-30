@@ -15,9 +15,10 @@ runs:
   using: "composite"
   steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6 
       with:
         fetch-depth: 0
+        token: ${{ inputs.token }} # Essential for subsequent workflows to trigger
 
     - name: Calculate Correct RC Version
       id: calc
@@ -42,17 +43,14 @@ runs:
           exit 0
         fi
 
-        # If a token is provided, reconfigure origin to HTTPS with token (helps local 'act' runs)
-        if [ -n "${{ inputs.token }}" ]; then
-          git remote set-url origin "https://x-access-token:${{ inputs.token }}@github.com/${{ github.repository }}.git"
-        fi
-
-        # Commit & Push
         git commit --allow-empty -m "chore: enforce correct rc version" -m "Release-As: $TARGET_VER"
-        git push origin ${{ inputs.target-branch }}
-        
+        git push "https://x-access-token:${{ inputs.token }}@github.com/${{ github.repository }}.git" ${{ inputs.target-branch }}
+
+        echo "SKIP_RELEASE=true" >> $GITHUB_ENV
 
     - name: Run release-please
+      # CRITICAL: Do not run if we just pushed a new commit, It will trigger another run. 
+      if: env.SKIP_RELEASE != 'true'
       uses: googleapis/release-please-action@v4
       with:
         token: ${{ inputs.token }}
