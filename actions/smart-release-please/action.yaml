@@ -29,6 +29,10 @@ runs:
       if: steps.calc.outputs.next_version != ''
       shell: bash
       run: |
+        # Configure Git
+        git config user.name "mapcolonies[bot]"
+        git config user.email "devops[bot]@mapcolonies.com"
+
         # Check if footer exists to prevent loop
         TARGET_VER="${{ steps.calc.outputs.next_version }}"
         LAST_MSG=$(git log -1 --pretty=%B)
@@ -36,6 +40,11 @@ runs:
         if [[ "$LAST_MSG" == *"Release-As: $TARGET_VER"* ]]; then
           echo "Footer already present. Skipping push."
           exit 0
+        fi
+
+        # If a token is provided, reconfigure origin to HTTPS with token (helps local 'act' runs)
+        if [ -n "${{ inputs.token }}" ]; then
+          git remote set-url origin "https://x-access-token:${{ inputs.token }}@github.com/${{ github.repository }}.git"
         fi
 
         # Commit & Push
