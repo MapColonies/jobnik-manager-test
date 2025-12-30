@@ -51,10 +51,8 @@ runs:
         git commit --allow-empty -m "chore: enforce correct rc version" -m "Release-As: $TARGET_VER"
         git push origin ${{ inputs.target-branch }}
         
-        echo "override_pushed=true" >> $GITHUB_ENV
 
     - name: Run release-please
-      if: env.override_pushed != 'true'
       uses: googleapis/release-please-action@v4
       with:
         token: ${{ inputs.token }}
