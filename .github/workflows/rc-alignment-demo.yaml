@@ -11,6 +11,10 @@ jobs:
   enforce-rc:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Align RC version for fixes-only
         uses: ./actions/rc-alignment
         with:
