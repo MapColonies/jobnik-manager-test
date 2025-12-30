@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.1.1-rc.2](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.1...v0.1.1-rc.2) (2025-12-30)
+
+
+### Features
+
+* replace RC alignment action with Smart Release Please and update workflows ([24fc6f7](https://github.com/MapColonies/jobnik-manager-test/commit/24fc6f7a2b98a7c6e48ce3dfb8f96b1adc97b08f))
+* trigger secound rc ([bea527e](https://github.com/MapColonies/jobnik-manager-test/commit/bea527ede95bc6aef988643d63c049b6db126f06))
+
+
+### Bug Fixes
+
+* implement force RC version alignment in release workflow ([083d449](https://github.com/MapColonies/jobnik-manager-test/commit/083d449dbb3c09299da6b3feda1d663aa92f38e5))
+* verify automatic rc increment ([3e2e51a](https://github.com/MapColonies/jobnik-manager-test/commit/3e2e51ad46e537a0de0ed63c423a936dd5999fbc))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([105ba7e](https://github.com/MapColonies/jobnik-manager-test/commit/105ba7e6282627d7d2ee34ce1c486f86d6f5baf4))
+
 ## [0.1.1-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.0...v0.1.1-rc.1) (2025-12-25)
 
 
