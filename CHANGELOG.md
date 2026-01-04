@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.2.0-rc.2](https://github.com/MapColonies/jobnik-manager-test/compare/v0.2.0-rc.1...v0.2.0-rc.2) (2026-01-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* trigger CI
+* trigger rc
+
+### Features
+
+* trigger CI ([2e35d51](https://github.com/MapColonies/jobnik-manager-test/commit/2e35d51fce9eadb041ad7a566d1e020ada46eeb3))
+* trigger rc ([83d1462](https://github.com/MapColonies/jobnik-manager-test/commit/83d14621fad7865be5974943a5c377b661053a27))
+
+
+### Bug Fixes
+
+* remove master branch from push triggers ([0c60046](https://github.com/MapColonies/jobnik-manager-test/commit/0c600460a5245c950c35a6bd66d8b0b6000b0b63))
+* trigger rc ([7eb7081](https://github.com/MapColonies/jobnik-manager-test/commit/7eb70815b0d349ae35b68b733c278c408c39d8a2))
+* update checkout action version and improve token handling ([197fe1f](https://github.com/MapColonies/jobnik-manager-test/commit/197fe1fc49beecfc994ca7902748140e5383041e))
+* update target branch references to use github.ref_name ([523cf5f](https://github.com/MapColonies/jobnik-manager-test/commit/523cf5fc2dd0e1bc2e05d1d42fe10ee7e455ec76))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([c378a71](https://github.com/MapColonies/jobnik-manager-test/commit/c378a71cd8a3c478dfc4299d458d4c3498563d1e))
+* enforce correct rc version ([0ebbea4](https://github.com/MapColonies/jobnik-manager-test/commit/0ebbea43585d9792de3107a4f885e4309332b9b3))
+* enforce correct rc version ([a470b51](https://github.com/MapColonies/jobnik-manager-test/commit/a470b51f8cbfd6de0f64e9cf36d329034929a0ec))
+* enforce correct rc version ([8f5727a](https://github.com/MapColonies/jobnik-manager-test/commit/8f5727aa3ca060056a9e524a50fe69e76d56894b))
+* enforce correct rc version ([22d0161](https://github.com/MapColonies/jobnik-manager-test/commit/22d016173aff5fceca81367da1482729b9ebc821))
+* enforce correct rc version ([e5aaeb0](https://github.com/MapColonies/jobnik-manager-test/commit/e5aaeb09859db8d31d8a94c95d3614831de3b372))
+* enforce correct rc version ([f0fdaa5](https://github.com/MapColonies/jobnik-manager-test/commit/f0fdaa53f629448cdb399969e635642ac9951a7c))
+
 ## [0.2.0-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1-rc.1...v0.2.0-rc.1) (2025-12-30)
 
 
