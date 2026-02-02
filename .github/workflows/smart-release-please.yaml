@@ -1,4 +1,4 @@
-name: RC Alignment Demo
+name: Smart Release Please
 
 on:
   push:
