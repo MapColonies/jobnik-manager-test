@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.3-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.2-rc.16...v0.1.3-rc.1) (2026-02-02)
+
+
+### Bug Fixes
+
+* add RC alignment workflow for branch management ([3c9f0fa](https://github.com/MapColonies/jobnik-manager-test/commit/3c9f0fa273cc7d3107a20fad075c66f800f6347a))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([b3779c3](https://github.com/MapColonies/jobnik-manager-test/commit/b3779c3550a55c40a39be69e575c862e45c385a7))
+* enforce correct rc version ([89172f0](https://github.com/MapColonies/jobnik-manager-test/commit/89172f0b827fa679b8f5066766b6f9797b01467e))
+
 ## [0.1.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.1...v0.1.1) (2026-02-01)
 
 
