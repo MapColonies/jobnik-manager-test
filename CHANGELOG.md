@@ -103,6 +103,96 @@
 * enforce correct rc version ([f3da40d](https://github.com/MapColonies/jobnik-manager-test/commit/f3da40d5048bccc919b312fd7ce21fd3bcc56bba))
 * enforce correct rc version ([b58ce2e](https://github.com/MapColonies/jobnik-manager-test/commit/b58ce2e88450292811aeac28d08c571978006af6))
 
+## [0.1.6-rc.11](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.6-rc.6...v0.1.6-rc.11) (2026-02-04)
+
+
+### Bug Fixes
+
+* add id to config resolution step in build workflow ([cff4a5e](https://github.com/MapColonies/jobnik-manager-test/commit/cff4a5e0c5afd09a08417c9134685dcc95a83029))
+* michal ([26ca21d](https://github.com/MapColonies/jobnik-manager-test/commit/26ca21dcd894689ed0724df2e4f89cf5de7564ec))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([8c46148](https://github.com/MapColonies/jobnik-manager-test/commit/8c461482023c8a4542b95fa6a65666992190157f))
+* enforce correct rc version ([17bc0f9](https://github.com/MapColonies/jobnik-manager-test/commit/17bc0f912559ac2715eb9a90d9fbea8909d483d6))
+* enforce correct rc version ([5a0beff](https://github.com/MapColonies/jobnik-manager-test/commit/5a0beffdb8cebfa656bf24412a67e866003c692e))
+
+## [0.1.6-rc.6](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.6-rc.4...v0.1.6-rc.6) (2026-02-04)
+
+
+### Bug Fixes
+
+* correct typo in condition for resolving config ([ac3f529](https://github.com/MapColonies/jobnik-manager-test/commit/ac3f5298edcc36c797842fa4ae19ef9279a161cb))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([39378e8](https://github.com/MapColonies/jobnik-manager-test/commit/39378e8e2c4b84d6757540f0b948b736b181a90b))
+* enforce correct rc version ([64ed419](https://github.com/MapColonies/jobnik-manager-test/commit/64ed419c74281dca7bb6ec47d047cfc2843107af))
+
+## [0.1.6-rc.4](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.6-rc.1...v0.1.6-rc.4) (2026-02-04)
+
+
+### Bug Fixes
+
+* remove unnecessary config step ID in build-and-push workflow ([773867a](https://github.com/MapColonies/jobnik-manager-test/commit/773867ab94c352d9a2344966dedbd4bfc0705e6e))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([ac051c2](https://github.com/MapColonies/jobnik-manager-test/commit/ac051c29f804c8c4be2b5156fd024e68a36ca7c5))
+* enforce correct rc version ([6933ee2](https://github.com/MapColonies/jobnik-manager-test/commit/6933ee26701ad63a9581ce5b7037eb9ec7a70959))
+
+## [0.1.6-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.5-rc.1...v0.1.6-rc.1) (2026-02-04)
+
+
+### Bug Fixes
+
+* correct typo in condition for resolving config in build-and-push workflow ([bd4a192](https://github.com/MapColonies/jobnik-manager-test/commit/bd4a192f7441c7fe959714ebf41edbd5b4495122))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([f07f633](https://github.com/MapColonies/jobnik-manager-test/commit/f07f633ba37ebf027bdd615771971499a9ae1e45))
+* enforce correct rc version ([0579fea](https://github.com/MapColonies/jobnik-manager-test/commit/0579fea15faee36aac5608fa5729b5f656ba6aee))
+
+## [0.1.5-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.4-rc.1...v0.1.5-rc.1) (2026-02-04)
+
+
+### Bug Fixes
+
+* correct syntax in conditional for housekeeping job ([9565f4d](https://github.com/MapColonies/jobnik-manager-test/commit/9565f4d16721cfdc2e3250b5555778e096a72563))
+* streamline environment variable handling and restore Docker and Helm build steps ([ced1326](https://github.com/MapColonies/jobnik-manager-test/commit/ced1326cf65913c2fade62b29d8a7c34229011a0))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([1816094](https://github.com/MapColonies/jobnik-manager-test/commit/18160945e0ca86c6d616e3b455ea49c4d509ffaa))
+* enforce correct rc version ([76010ac](https://github.com/MapColonies/jobnik-manager-test/commit/76010acb0048593afcd56ba964925a444a5b9850))
+* enforce correct rc version ([dfef127](https://github.com/MapColonies/jobnik-manager-test/commit/dfef127e4d3646bfcfe1d62e849038b4b7311b03))
+
+## [0.1.4-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.3-rc.1...v0.1.4-rc.1) (2026-02-04)
+
+
+### Features
+
+* enhance GitHub Actions workflows for artifact management and testing ([02d4fd4](https://github.com/MapColonies/jobnik-manager-test/commit/02d4fd4ae1c728152eb63ae536d895b4a0f613a1))
+
+
+### Bug Fixes
+
+* test ([eb3df21](https://github.com/MapColonies/jobnik-manager-test/commit/eb3df21598b3f2e2b67f0b10cc4b0b01ff780ed8))
+* update conditions for site values and housekeeping jobs in workflow ([d3b82ba](https://github.com/MapColonies/jobnik-manager-test/commit/d3b82ba12ec93fda56dbad3416424b65af33118d))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([73e8e0b](https://github.com/MapColonies/jobnik-manager-test/commit/73e8e0b2624b45450bd6fb8fed496ebfb2c5e615))
+* enforce correct rc version ([3606762](https://github.com/MapColonies/jobnik-manager-test/commit/36067629f0f565e7445607e365f28a94e97c6864))
+* enforce correct rc version ([f3da40d](https://github.com/MapColonies/jobnik-manager-test/commit/f3da40d5048bccc919b312fd7ce21fd3bcc56bba))
+* enforce correct rc version ([b58ce2e](https://github.com/MapColonies/jobnik-manager-test/commit/b58ce2e88450292811aeac28d08c571978006af6))
+
 ## [0.1.6-rc.4](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.6-rc.1...v0.1.6-rc.4) (2026-02-04)
 
 
