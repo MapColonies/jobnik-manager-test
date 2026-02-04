@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.5-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.4-rc.1...v0.1.5-rc.1) (2026-02-04)
+
+
+### Bug Fixes
+
+* correct syntax in conditional for housekeeping job ([9565f4d](https://github.com/MapColonies/jobnik-manager-test/commit/9565f4d16721cfdc2e3250b5555778e096a72563))
+* streamline environment variable handling and restore Docker and Helm build steps ([ced1326](https://github.com/MapColonies/jobnik-manager-test/commit/ced1326cf65913c2fade62b29d8a7c34229011a0))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([1816094](https://github.com/MapColonies/jobnik-manager-test/commit/18160945e0ca86c6d616e3b455ea49c4d509ffaa))
+* enforce correct rc version ([76010ac](https://github.com/MapColonies/jobnik-manager-test/commit/76010acb0048593afcd56ba964925a444a5b9850))
+* enforce correct rc version ([dfef127](https://github.com/MapColonies/jobnik-manager-test/commit/dfef127e4d3646bfcfe1d62e849038b4b7311b03))
+
 ## [0.1.4-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.3-rc.1...v0.1.4-rc.1) (2026-02-04)
 
 
