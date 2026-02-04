@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.6-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.5-rc.1...v0.1.6-rc.1) (2026-02-04)
+
+
+### Bug Fixes
+
+* correct typo in condition for resolving config in build-and-push workflow ([bd4a192](https://github.com/MapColonies/jobnik-manager-test/commit/bd4a192f7441c7fe959714ebf41edbd5b4495122))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([f07f633](https://github.com/MapColonies/jobnik-manager-test/commit/f07f633ba37ebf027bdd615771971499a9ae1e45))
+* enforce correct rc version ([0579fea](https://github.com/MapColonies/jobnik-manager-test/commit/0579fea15faee36aac5608fa5729b5f656ba6aee))
+
 ## [0.1.5-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.4-rc.1...v0.1.5-rc.1) (2026-02-04)
 
 
