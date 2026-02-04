@@ -1,0 +1,41 @@
+{
+  "ref": "refs/heads/next",
+  "before": "0000000000000000000000000000000000000000",
+  "after": "abc123def456789012345678901234567890abcd",
+  "repository": {
+    "name": "jobnik-manager-test",
+    "full_name": "MapColonies/jobnik-manager-test",
+    "owner": {
+      "name": "MapColonies",
+      "login": "MapColonies"
+    }
+  },
+  "pusher": {
+    "name": "developer",
+    "email": "developer@example.com"
+  },
+  "sender": {
+    "login": "developer",
+    "type": "User"
+  },
+  "head_commit": {
+    "id": "abc123def456789012345678901234567890abcd",
+    "message": "feat: add new feature",
+    "timestamp": "2026-02-03T10:00:00Z",
+    "author": {
+      "name": "Developer",
+      "email": "developer@example.com"
+    }
+  },
+  "commits": [
+    {
+      "id": "abc123def456789012345678901234567890abcd",
+      "message": "feat: add new feature",
+      "timestamp": "2026-02-03T10:00:00Z",
+      "author": {
+        "name": "Developer",
+        "email": "developer@example.com"
+      }
+    }
+  ]
+}
