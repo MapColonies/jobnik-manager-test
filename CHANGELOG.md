@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.6-rc.11](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.6-rc.6...v0.1.6-rc.11) (2026-02-04)
+
+
+### Bug Fixes
+
+* add id to config resolution step in build workflow ([cff4a5e](https://github.com/MapColonies/jobnik-manager-test/commit/cff4a5e0c5afd09a08417c9134685dcc95a83029))
+* michal ([26ca21d](https://github.com/MapColonies/jobnik-manager-test/commit/26ca21dcd894689ed0724df2e4f89cf5de7564ec))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([8c46148](https://github.com/MapColonies/jobnik-manager-test/commit/8c461482023c8a4542b95fa6a65666992190157f))
+* enforce correct rc version ([17bc0f9](https://github.com/MapColonies/jobnik-manager-test/commit/17bc0f912559ac2715eb9a90d9fbea8909d483d6))
+* enforce correct rc version ([5a0beff](https://github.com/MapColonies/jobnik-manager-test/commit/5a0beffdb8cebfa656bf24412a67e866003c692e))
+
 ## [0.1.6-rc.6](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.6-rc.4...v0.1.6-rc.6) (2026-02-04)
 
 
