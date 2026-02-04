@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.6-rc.2](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.6-rc.1...v0.1.6-rc.2) (2026-02-04)
+
+
+### Bug Fixes
+
+* remove unnecessary config step ID in build-and-push workflow ([773867a](https://github.com/MapColonies/jobnik-manager-test/commit/773867ab94c352d9a2344966dedbd4bfc0705e6e))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([6933ee2](https://github.com/MapColonies/jobnik-manager-test/commit/6933ee26701ad63a9581ce5b7037eb9ec7a70959))
+
 ## [0.1.6-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.5-rc.1...v0.1.6-rc.1) (2026-02-04)
 
 
