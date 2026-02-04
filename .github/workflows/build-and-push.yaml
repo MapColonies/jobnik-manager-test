@@ -71,7 +71,6 @@ jobs:
             TAG="${{ github.event.release.tag_name }}"
             echo "image_tag=${TAG}" >> "$GITHUB_OUTPUT"
             echo "chart_tag=${TAG}" >> "$GITHUB_OUTPUT"
-
             if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
               ENV="qa"
               echo "is_stable=false" >> "$GITHUB_OUTPUT"
@@ -79,7 +78,6 @@ jobs:
               ENV="prod"
               echo "is_stable=true" >> "$GITHUB_OUTPUT"
             fi
-
           else
             # push to next → dev
             ENV="dev"
@@ -87,7 +85,6 @@ jobs:
             echo "chart_tag=0.0.0-next-${{ github.sha }}" >> "$GITHUB_OUTPUT"
             echo "is_stable=false" >> "$GITHUB_OUTPUT"
           fi
-
           # Set environment-based outputs
           echo "environment=${ENV}" >> "$GITHUB_OUTPUT"
           echo "update_paths=infra/environments/${ENV}.yaml" >> "$GITHUB_OUTPUT"
@@ -98,32 +95,6 @@ jobs:
           else
             echo "pr_labels=${ENV}" >> "$GITHUB_OUTPUT"
           fi
-          
-          echo "should_run=true" >> "$GITHUB_OUTPUT"
-      
-      - name: Resolve config
-        if: stepse.check.outputs.should_run == 'true'
-        shell: bash
-        run: |
-          if [[ "${{ github.event_name }}" == "release" ]]; then
-            TAG="${{ github.event.release.tag_name }}"
-            echo "image_tag=${TAG}"        >> "$GITHUB_OUTPUT"
-            echo "chart_tag=${TAG}"        >> "$GITHUB_OUTPUT"
-
-            if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
-              # RC release → QA
-              echo "environment=qa"                            >> "$GITHUB_OUTPUT"
-              echo "pr_labels=qa"                              >> "$GITHUB_OUTPUT"
-              echo "update_paths=infra/environments/qa.yaml"   >> "$GITHUB_OUTPUT"
-              echo "is_stable=false"                           >> "$GITHUB_OUTPUT"
-            else
-              # Stable release → prod  (housekeeping handled by separate job)
-              echo "environment=prod"                            >> "$GITHUB_OUTPUT"
-              echo "pr_labels=prod"                              >> "$GITHUB_OUTPUT"
-              echo "update_paths=infra/environments/prod.yaml"   >> "$GITHUB_OUTPUT"
-              echo "is_stable=true"                              >> "$GITHUB_OUTPUT"
-            fi
-
   # ---------------------------------------------------------------------------
   # Build & push Docker image
   # ---------------------------------------------------------------------------
@@ -227,4 +198,4 @@ jobs:
           chart: ${{ github.event.repository.name }}
           environment: qa
           pr_labels: qa, auto-merge
-          paths: infra/environments//qa.yaml
+          paths: infra/environments/qa.yaml
