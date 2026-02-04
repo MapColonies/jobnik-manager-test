@@ -64,7 +64,6 @@ jobs:
           echo "should_run=true" >> "$GITHUB_OUTPUT"
       
       - name: Resolve config
-        id: config
         if: steps.check.outputs.should_run == 'true'
         shell: bash
         run: |
@@ -103,8 +102,7 @@ jobs:
           echo "should_run=true" >> "$GITHUB_OUTPUT"
       
       - name: Resolve config
-        id: config
-        if: steps.check.outputs.should_run == 'true'
+        if: stepse.check.outputs.should_run == 'true'
         shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "release" ]]; then
