@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.3-rc.1...v0.2.0-rc.1) (2026-02-04)
+
+
+### Features
+
+* enhance GitHub Actions workflows for artifact management and testing ([02d4fd4](https://github.com/MapColonies/jobnik-manager-test/commit/02d4fd4ae1c728152eb63ae536d895b4a0f613a1))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([f3da40d](https://github.com/MapColonies/jobnik-manager-test/commit/f3da40d5048bccc919b312fd7ce21fd3bcc56bba))
+* enforce correct rc version ([b58ce2e](https://github.com/MapColonies/jobnik-manager-test/commit/b58ce2e88450292811aeac28d08c571978006af6))
+
 ## [0.1.2](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.2...v0.1.2) (2026-02-02)
 
 
