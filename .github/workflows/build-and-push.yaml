@@ -99,6 +99,32 @@ jobs:
           else
             echo "pr_labels=${ENV}" >> "$GITHUB_OUTPUT"
           fi
+          
+          echo "should_run=true" >> "$GITHUB_OUTPUT"
+      
+      - name: Resolve config
+        id: config
+        if: steps.check.outputs.should_run == 'true'
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            TAG="${{ github.event.release.tag_name }}"
+            echo "image_tag=${TAG}"        >> "$GITHUB_OUTPUT"
+            echo "chart_tag=${TAG}"        >> "$GITHUB_OUTPUT"
+
+            if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
+              # RC release → QA
+              echo "environment=qa"                            >> "$GITHUB_OUTPUT"
+              echo "pr_labels=qa"                              >> "$GITHUB_OUTPUT"
+              echo "update_paths=infra/environments/qa.yaml"   >> "$GITHUB_OUTPUT"
+              echo "is_stable=false"                           >> "$GITHUB_OUTPUT"
+            else
+              # Stable release → prod  (housekeeping handled by separate job)
+              echo "environment=prod"                            >> "$GITHUB_OUTPUT"
+              echo "pr_labels=prod"                              >> "$GITHUB_OUTPUT"
+              echo "update_paths=infra/environments/prod.yaml"   >> "$GITHUB_OUTPUT"
+              echo "is_stable=true"                              >> "$GITHUB_OUTPUT"
+            fi
 
   # ---------------------------------------------------------------------------
   # Build & push Docker image
@@ -194,13 +220,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Update ${{ matrix.env_name }} to stable tag
+      - name: Update qa to stable tag
         uses: MapColonies/shared-workflows/actions/update-chart-version@update-chart-version-v0.1.0
         with:
           tag: ${{ needs.determine-config.outputs.chart_tag }}
           repository: test-site
           github_token: ${{ secrets.GH_PAT }}
           chart: ${{ github.event.repository.name }}
-          environment: /qa
-          pr_labels: /qa, auto-merge
+          environment: qa
+          pr_labels: qa, auto-merge
           paths: infra/environments//qa.yaml

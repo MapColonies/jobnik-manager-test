@@ -36,6 +36,27 @@
 * enforce correct rc version ([f3da40d](https://github.com/MapColonies/jobnik-manager-test/commit/f3da40d5048bccc919b312fd7ce21fd3bcc56bba))
 * enforce correct rc version ([b58ce2e](https://github.com/MapColonies/jobnik-manager-test/commit/b58ce2e88450292811aeac28d08c571978006af6))
 
+## [0.1.4-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.3-rc.1...v0.1.4-rc.1) (2026-02-04)
+
+
+### Features
+
+* enhance GitHub Actions workflows for artifact management and testing ([02d4fd4](https://github.com/MapColonies/jobnik-manager-test/commit/02d4fd4ae1c728152eb63ae536d895b4a0f613a1))
+
+
+### Bug Fixes
+
+* test ([eb3df21](https://github.com/MapColonies/jobnik-manager-test/commit/eb3df21598b3f2e2b67f0b10cc4b0b01ff780ed8))
+* update conditions for site values and housekeeping jobs in workflow ([d3b82ba](https://github.com/MapColonies/jobnik-manager-test/commit/d3b82ba12ec93fda56dbad3416424b65af33118d))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([73e8e0b](https://github.com/MapColonies/jobnik-manager-test/commit/73e8e0b2624b45450bd6fb8fed496ebfb2c5e615))
+* enforce correct rc version ([3606762](https://github.com/MapColonies/jobnik-manager-test/commit/36067629f0f565e7445607e365f28a94e97c6864))
+* enforce correct rc version ([f3da40d](https://github.com/MapColonies/jobnik-manager-test/commit/f3da40d5048bccc919b312fd7ce21fd3bcc56bba))
+* enforce correct rc version ([b58ce2e](https://github.com/MapColonies/jobnik-manager-test/commit/b58ce2e88450292811aeac28d08c571978006af6))
+
 ## [0.1.2](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.2...v0.1.2) (2026-02-02)
 
 
