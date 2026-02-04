@@ -70,84 +70,87 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "release" ]]; then
             TAG="${{ github.event.release.tag_name }}"
-            echo "image_tag=${TAG}"        >> "$GITHUB_OUTPUT"
-            echo "chart_tag=${TAG}"        >> "$GITHUB_OUTPUT"
+            echo "image_tag=${TAG}" >> "$GITHUB_OUTPUT"
+            echo "chart_tag=${TAG}" >> "$GITHUB_OUTPUT"
 
             if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
-              # RC release → QA
-              echo "environment=qa"                            >> "$GITHUB_OUTPUT"
-              echo "pr_labels=qa"                              >> "$GITHUB_OUTPUT"
-              echo "update_paths=infra/environments/qa.yaml"   >> "$GITHUB_OUTPUT"
-              echo "is_stable=false"                           >> "$GITHUB_OUTPUT"
+              ENV="qa"
+              echo "is_stable=false" >> "$GITHUB_OUTPUT"
             else
-              # Stable release → prod  (housekeeping handled by separate job)
-              echo "environment=prod"                            >> "$GITHUB_OUTPUT"
-              echo "pr_labels=prod"                              >> "$GITHUB_OUTPUT"
-              echo "update_paths=infra/environments/prod.yaml"   >> "$GITHUB_OUTPUT"
-              echo "is_stable=true"                              >> "$GITHUB_OUTPUT"
+              ENV="prod"
+              echo "is_stable=true" >> "$GITHUB_OUTPUT"
             fi
 
           else
             # push to next → dev
-            echo "image_tag=next-${{ github.sha }}"                  >> "$GITHUB_OUTPUT"
-            echo "chart_tag=0.0.0-next-${{ github.sha }}"            >> "$GITHUB_OUTPUT"
-            echo "environment=dev"                                    >> "$GITHUB_OUTPUT"
-            echo "pr_labels=dev, auto-merge"                          >> "$GITHUB_OUTPUT"
-            echo "update_paths=infra/environments/dev.yaml"           >> "$GITHUB_OUTPUT"
-            echo "is_stable=false"                                    >> "$GITHUB_OUTPUT"
+            ENV="dev"
+            echo "image_tag=next-${{ github.sha }}" >> "$GITHUB_OUTPUT"
+            echo "chart_tag=0.0.0-next-${{ github.sha }}" >> "$GITHUB_OUTPUT"
+            echo "is_stable=false" >> "$GITHUB_OUTPUT"
           fi
 
-  # # ---------------------------------------------------------------------------
-  # # Build & push Docker image
-  # # ---------------------------------------------------------------------------
-  # push-docker-image:
-  #   runs-on: ubuntu-latest
-  #   needs: determine-config
-  #   if: needs.determine-config.outputs.should_run == 'true'
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v6
+          # Set environment-based outputs
+          echo "environment=${ENV}" >> "$GITHUB_OUTPUT"
+          echo "update_paths=infra/environments/${ENV}.yaml" >> "$GITHUB_OUTPUT"
+          
+          # Set PR labels (dev gets auto-merge)
+          if [[ "${ENV}" == "dev" ]]; then
+            echo "pr_labels=${ENV}, auto-merge" >> "$GITHUB_OUTPUT"
+          else
+            echo "pr_labels=${ENV}" >> "$GITHUB_OUTPUT"
+          fi
 
-  #     - name: Login to ACR
-  #       uses: docker/login-action@v3
-  #       with:
-  #         registry: ${{ secrets.ACR_URL }}
-  #         username: ${{ secrets.ACR_PUSH_USER }}
-  #         password: ${{ secrets.ACR_PUSH_TOKEN }}
+  # ---------------------------------------------------------------------------
+  # Build & push Docker image
+  # ---------------------------------------------------------------------------
+  push-docker-image:
+    runs-on: ubuntu-latest
+    needs: determine-config
+    if: needs.determine-config.outputs.should_run == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
 
-  #     - name: Build and push
-  #       uses: docker/build-push-action@v6
-  #       with:
-  #         context: .
-  #         push: true
-  #         tags: ${{ secrets.ACR_URL }}/${{ env.DOMAIN }}/${{ github.event.repository.name }}:${{ needs.determine-config.outputs.image_tag }}
+      - name: Login to ACR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.ACR_URL }}
+          username: ${{ secrets.ACR_PUSH_USER }}
+          password: ${{ secrets.ACR_PUSH_TOKEN }}
 
-  # # ---------------------------------------------------------------------------
-  # # Build & push Helm chart
-  # # ---------------------------------------------------------------------------
-  # push-helm-package:
-  #   runs-on: ubuntu-latest
-  #   needs: [determine-config, push-docker-image]
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v6
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.ACR_URL }}/${{ env.DOMAIN }}/${{ github.event.repository.name }}:${{ needs.determine-config.outputs.image_tag }}
 
-  #     - name: Setup Helm
-  #       uses: azure/setup-helm@v4
-  #       with:
-  #         version: v3.15.4
+  # ---------------------------------------------------------------------------
+  # Build & push Helm chart
+  # ---------------------------------------------------------------------------
+  push-helm-package:
+    runs-on: ubuntu-latest
+    needs: [determine-config, push-docker-image]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
 
-  #     - name: Push chart to ACR
-  #       uses: appany/helm-oci-chart-releaser@v0.5.0
-  #       with:
-  #         name: ${{ github.event.repository.name }}
-  #         repository: helm/${{ env.DOMAIN }}
-  #         tag: ${{ needs.determine-config.outputs.chart_tag }}
-  #         path: ./helm
-  #         registry: ${{ secrets.ACR_URL }}
-  #         registry_username: ${{ secrets.ACR_PUSH_USER }}
-  #         registry_password: ${{ secrets.ACR_PUSH_TOKEN }}
-  #         update_dependencies: 'true'
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.15.4
+
+      - name: Push chart to ACR
+        uses: appany/helm-oci-chart-releaser@v0.5.0
+        with:
+          name: ${{ github.event.repository.name }}
+          repository: helm/${{ env.DOMAIN }}
+          tag: ${{ needs.determine-config.outputs.chart_tag }}
+          path: ./helm
+          registry: ${{ secrets.ACR_URL }}
+          registry_username: ${{ secrets.ACR_PUSH_USER }}
+          registry_password: ${{ secrets.ACR_PUSH_TOKEN }}
+          update_dependencies: 'true'
 
   # ---------------------------------------------------------------------------
   # Open the PR in test-site for the target environment.
@@ -158,8 +161,7 @@ jobs:
   # ---------------------------------------------------------------------------
   update-site-values:
     runs-on: ubuntu-latest
-    needs: [determine-config]
-    if: needs.determine-config.outputs.should_run == 'true'
+    needs: [determine-config, push-helm-package]
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -179,16 +181,13 @@ jobs:
 
   # ---------------------------------------------------------------------------
   # Housekeeping — only on stable release.
-  # When v0.1.2 is cut, qa and integration are still pointing at v0.1.2-rc.X.
-  # This job auto-updates both to the new stable tag so they stay in sync.
+  # When v0.1.2 is cut, qa ןד still pointing at v0.1.2-rc.X.
+  # This job auto-updates qa to the new stable tag so it will stay in sync.
   # ---------------------------------------------------------------------------
   housekeeping-update-qa-and-integration:
     runs-on: ubuntu-latest
-    needs: [determine-config]
-    if: needs.determine-config.outputs.should_run == 'true' && needs.determine-config.outputs.is_stable == 'true'
-    strategy:
-      matrix:
-        env_name: [qa, integration]
+    needs: [determine-config, push-helm-package]
+    if: needs.determine-config.outputs.is_stable == 'true']
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -202,6 +201,6 @@ jobs:
           repository: test-site
           github_token: ${{ secrets.GH_PAT }}
           chart: ${{ github.event.repository.name }}
-          environment: ${{ matrix.env_name }}
-          pr_labels: ${{ matrix.env_name }}, auto-merge
-          paths: infra/environments/${{ matrix.env_name }}.yaml
+          environment: /qa
+          pr_labels: /qa, auto-merge
+          paths: infra/environments//qa.yaml
