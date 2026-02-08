@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.8-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.7-rc.1...v0.1.8-rc.1) (2026-02-08)
+
+
+### Bug Fixes
+
+* update dependencies in workflow and improve environment handling ([ad6089f](https://github.com/MapColonies/jobnik-manager-test/commit/ad6089f4741bcabc005d55bcb98dff3588283a32))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([015df7e](https://github.com/MapColonies/jobnik-manager-test/commit/015df7ea09ae4458952c2fb6d166f3619bc9213b))
+* enforce correct rc version ([a5858ec](https://github.com/MapColonies/jobnik-manager-test/commit/a5858ecb4e638fbb03c72acc90917ffa3106cebd))
+
 ## [0.1.7-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.6-rc.11...v0.1.7-rc.1) (2026-02-04)
 
 
