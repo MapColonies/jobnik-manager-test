@@ -126,7 +126,7 @@ jobs:
   # ---------------------------------------------------------------------------
   push-helm-package:
     runs-on: ubuntu-latest
-    needs: [determine-config, push-docker-image]
+    needs: [determine-config]
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -151,13 +151,12 @@ jobs:
   # ---------------------------------------------------------------------------
   # Open the PR in test-site for the target environment.
   #
-  #   dev  → auto-merge (labels: "dev, auto-merge")
-  #   qa   → manual     (labels: "qa")
+  #   dev  → auto-merge (labels: "qa")
   #   prod → manual     (labels: "prod")
   # ---------------------------------------------------------------------------
   update-site-values:
     runs-on: ubuntu-latest
-    needs: [determine-config, push-helm-package]
+    needs: [determine-config, push-docker-image, push-helm-package]
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -177,26 +176,29 @@ jobs:
 
   # ---------------------------------------------------------------------------
   # Housekeeping — only on stable release.
-  # When v0.1.2 is cut, qa ןד still pointing at v0.1.2-rc.X.
-  # This job auto-updates qa to the new stable tag so it will stay in sync.
+  # When v0.1.2 is cut, qa and integration are still pointing at v0.1.2-rc.X.
+  # This job auto-updates both to the new stable tag so they stay in sync.
   # ---------------------------------------------------------------------------
   housekeeping-update-qa-and-integration:
     runs-on: ubuntu-latest
     needs: [determine-config, push-helm-package]
     if: needs.determine-config.outputs.is_stable == 'true'
+    strategy:
+      matrix:
+        env_name: [qa, integration]
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Update qa to stable tag
+      - name: Update ${{ matrix.env_name }} to stable tag
         uses: MapColonies/shared-workflows/actions/update-chart-version@update-chart-version-v0.1.0
         with:
           tag: ${{ needs.determine-config.outputs.chart_tag }}
           repository: test-site
           github_token: ${{ secrets.GH_PAT }}
           chart: ${{ github.event.repository.name }}
-          environment: qa
-          pr_labels: qa, auto-merge
-          paths: infra/environments/qa.yaml
+          environment: ${{ matrix.env_name }}
+          pr_labels: ${{ matrix.env_name }}, auto-merge
+          paths: infra/environments/${{ matrix.env_name }}.yaml
