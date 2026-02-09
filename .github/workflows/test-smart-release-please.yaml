@@ -1,7 +1,7 @@
 name: Test smart release-please action
 
 on:
-  push:
+  workflow_dispatch:
       
 jobs:
   test-action:

@@ -30,13 +30,13 @@ jobs:
   determine-config:
     runs-on: ubuntu-latest
     outputs:
-      should_run:      ${{ steps.check.outputs.should_run }}
-      image_tag:       ${{ steps.config.outputs.image_tag }}
-      chart_tag:       ${{ steps.config.outputs.chart_tag }}
-      environment:     ${{ steps.config.outputs.environment }}
-      pr_labels:       ${{ steps.config.outputs.pr_labels }}
-      update_paths:    ${{ steps.config.outputs.update_paths }}
-      is_stable:       ${{ steps.config.outputs.is_stable }}
+      should_run: ${{ steps.check.outputs.should_run }}
+      image_tag: ${{ steps.config.outputs.image_tag }}
+      chart_tag: ${{ steps.config.outputs.chart_tag }}
+      environment: ${{ steps.config.outputs.environment }}
+      pr_labels: ${{ steps.config.outputs.pr_labels }}
+      update_paths: ${{ steps.config.outputs.update_paths }}
+      is_stable: ${{ steps.config.outputs.is_stable }}
     steps:
       - name: Check if should run
         id: check
