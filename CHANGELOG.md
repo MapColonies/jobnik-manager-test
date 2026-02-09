@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.9-rc.5](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.9-rc.3...v0.1.9-rc.5) (2026-02-09)
+
+
+### Bug Fixes
+
+* update commit message conditions to skip merges from master ([fde7936](https://github.com/MapColonies/jobnik-manager-test/commit/fde7936c665780774428d459a9d7b66cecc0bbb2))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([00dff05](https://github.com/MapColonies/jobnik-manager-test/commit/00dff058b39cd9b35b34c1ccfa1f7dc5b6c0ade3))
+* enforce correct rc version ([f87a373](https://github.com/MapColonies/jobnik-manager-test/commit/f87a37392e2678be8fe0c2e883988d5daf53e5dc))
+
 ## [0.1.9-rc.3](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.9-rc.1...v0.1.9-rc.3) (2026-02-09)
 
 
