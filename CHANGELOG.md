@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.8](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.8...v0.1.8) (2026-02-09)
+
+
+### Bug Fixes
+
+* clean up whitespace and formatting in build-and-push workflow ([d6f2604](https://github.com/MapColonies/jobnik-manager-test/commit/d6f26044892fabfb363bcbd87121aa55d9535e1d))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([90b9905](https://github.com/MapColonies/jobnik-manager-test/commit/90b9905e04b4b5e30d9f797d1e51f037029ddd55))
+
 ## [0.1.8](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.8...v0.1.8) (2026-02-08)
 
 
