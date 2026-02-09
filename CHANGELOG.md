@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.9-rc.3](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.9-rc.1...v0.1.9-rc.3) (2026-02-09)
+
+
+### Bug Fixes
+
+* conditionally run Helm package push based on config output ([e65c6a2](https://github.com/MapColonies/jobnik-manager-test/commit/e65c6a22a0ca02471ec40c641cdb3d4768e52a94))
+* update concurrency group name in build-and-push workflow ([e950892](https://github.com/MapColonies/jobnik-manager-test/commit/e95089201c2fd1edf9114760d860c233c8f3b39d))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([569170b](https://github.com/MapColonies/jobnik-manager-test/commit/569170b97a60ec4ecda0ccf1cd8bd4e88e0c003c))
+* enforce correct rc version ([405da9c](https://github.com/MapColonies/jobnik-manager-test/commit/405da9c61fd6bba4b5632597abd2bc1e5baf47b6))
+
 ## [0.1.9-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.8-rc.1...v0.1.9-rc.1) (2026-02-09)
 
 
