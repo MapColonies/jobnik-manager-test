@@ -7,6 +7,10 @@ on:
   release:
     types: [published]
 
+concurrency:
+  group: smart-release-please-${{ github.ref }}
+  cancel-in-progress: false  # false to queue, not cancel
+
 permissions:
   contents: write
   packages: write
