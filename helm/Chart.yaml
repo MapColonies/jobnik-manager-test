@@ -2,8 +2,8 @@ apiVersion: v2
 name: jobnik-manager-test
 description: A Helm chart for jobnik-manager service
 type: application
-version: 0.1.9-rc.3
-appVersion: 0.1.9-rc.3
+version: 0.1.9-rc.6
+appVersion: 0.1.9-rc.6
 dependencies:
   - name: mclabels
     version: 1.0.1
