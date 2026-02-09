@@ -7,6 +7,10 @@ on:
   release:
     types: [published]
 
+concurrency:
+  group: build-and-push-${{ github.ref }}
+  cancel-in-progress: false  # false to queue, not cancel
+
 permissions:
   contents: write
   packages: write
@@ -55,7 +59,8 @@ jobs:
           if [[ "$COMMIT_MSG" == *"Release-As:"* ]] || \
              [[ "$COMMIT_MSG" == "chore: enforce correct rc version"* ]] || \
              [[ "$COMMIT_MSG" == *"chore(next): release"* ]] || \
-             [[ "$COMMIT_MSG" == *"chore: release"* ]]; then
+             [[ "$COMMIT_MSG" == *"chore: release"* ]] || \
+             [[ "$COMMIT_MSG" == "Merge branch 'master' into next"* ]]; then
             echo "should_run=false" >> "$GITHUB_OUTPUT"
             echo "Skipping bot commit"
             exit 0
@@ -126,6 +131,7 @@ jobs:
   # ---------------------------------------------------------------------------
   push-helm-package:
     runs-on: ubuntu-latest
+    if: needs.determine-config.outputs.should_run == 'true'
     needs: [determine-config]
     steps:
       - name: Checkout
