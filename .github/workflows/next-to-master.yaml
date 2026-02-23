@@ -1,6 +1,7 @@
 name: RC Release Sync (next → master)
 
 on:
+	workflow_dispatch:
   release:
     types: [published]
 
