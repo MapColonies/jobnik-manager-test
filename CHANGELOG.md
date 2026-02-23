@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.9](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.9...v0.1.9) (2026-02-23)
+
+
+### Bug Fixes
+
+* correct labels in update-site-values and update dependencies in housekeeping job ([b4bcdef](https://github.com/MapColonies/jobnik-manager-test/commit/b4bcdefb5f8e9ad6fff1490cd44c122c04df5d20))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([29a8a37](https://github.com/MapColonies/jobnik-manager-test/commit/29a8a37b8807a09699be7813b4f5f9a3d677f030))
+
 ## [0.1.9](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.9...v0.1.9) (2026-02-09)
 
 
