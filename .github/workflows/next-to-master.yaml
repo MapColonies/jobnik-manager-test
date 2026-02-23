@@ -38,22 +38,21 @@ jobs:
       - name: Create and Push Sync Branch
         id: create-branch
         run: |
-          # Ensure we're on next
-          git checkout next
-          git reset --hard origin/next
-          
-          # Create branch name from manifest version
+          # Get version from manifest
           VERSION=$(grep -o '"\.": "[^"]*"' .release-please-manifest.json | cut -d'"' -f4 || echo "unknown")
           BRANCH_NAME="release/sync-next-to-master-${VERSION}"
           echo "branch_name=${BRANCH_NAME}" >> $GITHUB_OUTPUT
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
           
-          # Create or reset the sync branch
-          git checkout -B "$BRANCH_NAME" origin/next
+          # Create branch from master
+          git checkout -b "$BRANCH_NAME" origin/master
+          
+          # Merge next into the branch, preferring next on conflicts (-X theirs)
+          git merge origin/next -X theirs --no-edit -m "chore: sync next to master (RC ${VERSION})"
           
           # Push to remote
           git push origin "$BRANCH_NAME" -f
-          echo "✓ Branch created/updated: $BRANCH_NAME"
+          echo "✓ Branch created with merged changes: $BRANCH_NAME"
 
       - name: Create Pull Request
         id: create-pr
@@ -86,4 +85,4 @@ jobs:
                   repo: context.repo.repo,
                   pull_number: prNumber,
                   title: `chore: sync next to master (RC ${version})`,
-                  body: `## Automatic RC Release Sync
+                  body: `## Automatic RC Release Sync`
