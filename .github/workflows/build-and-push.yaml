@@ -9,7 +9,7 @@ on:
 
 concurrency:
   group: build-and-push-${{ github.ref }}
-  cancel-in-progress: false  # false to queue, not cancel
+  cancel-in-progress: false # false to queue, not cancel
 
 permissions:
   contents: write
@@ -157,7 +157,7 @@ jobs:
   # ---------------------------------------------------------------------------
   # Open the PR in test-site for the target environment.
   #
-  #   dev  → auto-merge (labels: "qa")
+  #   dev  → auto-merge (labels: "dev")
   #   prod → manual     (labels: "prod")
   # ---------------------------------------------------------------------------
   update-site-values:
@@ -187,7 +187,7 @@ jobs:
   # ---------------------------------------------------------------------------
   housekeeping-update-qa-and-integration:
     runs-on: ubuntu-latest
-    needs: [determine-config, push-helm-package]
+    needs: [determine-config, push-helm-package, push-docker-image]
     if: needs.determine-config.outputs.is_stable == 'true'
     strategy:
       matrix:
