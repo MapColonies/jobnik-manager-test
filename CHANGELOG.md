@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.10-rc.1](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.9-rc.6...v0.1.10-rc.1) (2026-02-23)
+
+
+### Bug Fixes
+
+* correct labels for auto-merge and update job dependencies in workflow ([bb27dfc](https://github.com/MapColonies/jobnik-manager-test/commit/bb27dfc33e5888b8c0f1d51dabf4df6a57e7def4))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([a244b1c](https://github.com/MapColonies/jobnik-manager-test/commit/a244b1c3652dad50005c4ff630922724baad5c32))
+
 ## [0.1.9-rc.6](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.9-rc.3...v0.1.9-rc.6) (2026-02-09)
 
 
