@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.10-rc.6](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.10-rc.3...v0.1.10-rc.6) (2026-02-23)
+
+
+### Bug Fixes
+
+* test ([6a4afc8](https://github.com/MapColonies/jobnik-manager-test/commit/6a4afc8f694743dbb2f497019096652d08c9fccd))
+* update RC release sync workflow to improve branch handling and PR creation ([6c3bd17](https://github.com/MapColonies/jobnik-manager-test/commit/6c3bd171feaab2ff656de5b39ad6a5fe5381d05c))
+
+
+### Miscellaneous Chores
+
+* enforce correct rc version ([212bc99](https://github.com/MapColonies/jobnik-manager-test/commit/212bc995802a93f09ba3f7c94d8820e86581efb7))
+* enforce correct rc version ([dc30c05](https://github.com/MapColonies/jobnik-manager-test/commit/dc30c054b8aca29063ab1ebbed0af8a53a6df299))
+
 ## [0.1.10-rc.3](https://github.com/MapColonies/jobnik-manager-test/compare/v0.1.10-rc.1...v0.1.10-rc.3) (2026-02-23)
 
 
