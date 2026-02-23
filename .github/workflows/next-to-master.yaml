@@ -1,0 +1,60 @@
+name: RC Release Sync (next → master)
+
+on:
+  release:
+    types: [published]
+
+concurrency:
+  group: rc-release-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-to-master:
+    runs-on: ubuntu-latest
+    # Only run for RC releases from next branch
+    if: contains(github.event.release.tag_name, '-rc.')
+    steps:
+      - name: Checkout next branch
+        uses: actions/checkout@v6
+        with:
+          ref: next
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git Identity
+        run: |
+          git config user.name "mapcolonies[bot]"
+          git config user.email "devops[bot]@mapcolonies.com"
+
+      - name: Merge next into master (preferring next on conflicts)
+        run: |
+          # Fetch master branch
+          git fetch origin master:master
+          
+          # Create temp branch from master
+          git checkout -b temp-sync-branch master
+          
+          # Merge next into temp branch, preferring next on conflicts (-X theirs)
+          git merge next -X theirs --no-edit -m "chore: sync next to master (RC release ${{ github.event.release.tag_name }})"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        id: create-pr
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release/sync-next-to-master-${{ github.event.release.tag_name }}
+          base: master
+          title: 'chore: sync next to master (RC ${{ github.event.release.tag_name }})'
+          body: |
+            ## Automatic RC Release Sync
+            
+            This PR syncs RC release **${{ github.event.release.tag_name }}** from `next` to `master`.
+            
+            ### Conflict Resolution
+            - ✅ Conflicts automatically resolved preferring `next` branch
+            - Version files use the RC version from `next`
+          delete-branch: true
